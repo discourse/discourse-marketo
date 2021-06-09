@@ -1,0 +1,13 @@
+plugins:
+  discourse_marketo_enabled:
+    default: false
+    validator: 'DiscourseMarketoEnabledValidator'
+  marketo_endpoint: ''
+  marketo_identity: ''
+  marketo_client_id: ''
+  marketo_client_secret: ''
+  marketo_newsletter_field: 'Newsletter'
+  marketo_trust_level_field: 'discourseTrustLevel'
+  marketo_updates_size:
+    default: 100
+    hidden: true

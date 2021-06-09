@@ -1,0 +1,12 @@
+en:
+  site_settings:
+    discourse_marketo_enabled: "Enable Marketo integration"
+    marketo_endpoint: "Marketo REST API Endpoint (in Marketo, see Admin > Web Services > REST API box)"
+    marketo_identity: "Marketo REST API Identity (in Marketo, see Admin > Web Services > REST API box)"
+    marketo_client_id: "Client ID of the Marketo LaunchPoint service (in Marketo, see Admin > LaunchPoint > New Service)"
+    marketo_client_secret: "Client secret of the Marketo LaunchPoint service (in Marketo, see Admin > LaunchPoint > New Service)"
+    marketo_newsletter_field: "Name of the newsletter user field"
+    marketo_trust_level_field: "The API name of the Marketo field holding lead's Discourse trust level (in Marketo, see Admin > Database Management > Field Management)"
+
+    errors:
+      discourse_marketo_settings_are_empty: "Fill the rest of the settings before enabling the plugin"
