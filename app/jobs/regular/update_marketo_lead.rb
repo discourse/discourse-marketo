@@ -10,12 +10,18 @@ module Jobs
 
       newsletter_field_id = UserField.where(name: SiteSetting.marketo_newsletter_field)&.first&.id
       if user.user_fields[newsletter_field_id.to_s].present?
+        names = user.name&.split || []
+
+        input = {
+          firstName: names.size >= 1 ? names.first : nil,
+          lastName: names.size >= 2 ? names.last : nil,
+          email: user.email,
+          SiteSetting.marketo_trust_level_field => user.trust_level,
+        }
+
         response = api.update_leads(
           action: 'createOrUpdate',
-          input: [{
-            email: user.email,
-            SiteSetting.marketo_trust_level_field => user.trust_level,
-          }]
+          input: [input]
         )
 
         response["result"].each do |result|
