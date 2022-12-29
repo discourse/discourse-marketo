@@ -13,16 +13,13 @@ module Jobs
         names = user.name&.split || []
 
         input = {
-          firstName: names.size >= 1 ? names.first : nil,
-          lastName: names.size >= 2 ? names.last : nil,
-          email: user.email,
+          :firstName => names.size >= 1 ? names.first : nil,
+          :lastName => names.size >= 2 ? names.last : nil,
+          :email => user.email,
           SiteSetting.marketo_trust_level_field => user.trust_level,
         }
 
-        response = api.update_leads(
-          action: 'createOrUpdate',
-          input: [input]
-        )
+        response = api.update_leads(action: "createOrUpdate", input: [input])
 
         response["result"].each do |result|
           if result["status"] == "skipped"
@@ -30,8 +27,8 @@ module Jobs
           end
         end
       else
-        if leads = api.leads(filterType: 'email', filterValues: user.emails.join(','))
-          lead_ids = leads['result'].map { |lead| lead['id'] }
+        if leads = api.leads(filterType: "email", filterValues: user.emails.join(","))
+          lead_ids = leads["result"].map { |lead| lead["id"] }
           api.delete_leads(ids: lead_ids)
         end
       end
