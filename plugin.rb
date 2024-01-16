@@ -5,7 +5,6 @@
 # version: 0.0.1
 # authors: Discourse
 # url: https://github.com/discourse/discourse-marketo
-# transpile_js: true
 
 enabled_site_setting :discourse_marketo_enabled
 
