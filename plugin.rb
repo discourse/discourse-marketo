@@ -8,8 +8,8 @@
 
 enabled_site_setting :discourse_marketo_enabled
 
-load File.expand_path("../lib/marketo_api.rb", __FILE__)
-load File.expand_path("../lib/validators/discourse_marketo_enabled_validator.rb", __FILE__)
+require_relative "lib/marketo_api"
+require_relative "lib/validators/discourse_marketo_enabled_validator"
 
 after_initialize do
   module ::DiscourseMarketo
@@ -17,8 +17,8 @@ after_initialize do
     UPDATES_QUEUE = "marketo_updates"
   end
 
-  load File.expand_path("../app/jobs/regular/update_marketo_lead.rb", __FILE__)
-  load File.expand_path("../app/jobs/scheduled/update_marketo_leads.rb", __FILE__)
+  require_relative "app/jobs/regular/update_marketo_lead"
+  require_relative "app/jobs/scheduled/update_marketo_leads"
 
   on(:user_created) { |user| Jobs.enqueue_in(5.seconds, :update_marketo_lead, user_id: user.id) }
 
