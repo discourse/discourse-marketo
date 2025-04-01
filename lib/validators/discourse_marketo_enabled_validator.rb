@@ -6,7 +6,7 @@ class DiscourseMarketoEnabledValidator
   end
 
   def valid_value?(val)
-    !val ||
+    !SiteSetting.type_supervisor.to_rb_value("", val, SiteSettings::TypeSupervisor.types[:bool]) ||
       (
         SiteSetting.marketo_endpoint.present? && SiteSetting.marketo_identity.present? &&
           SiteSetting.marketo_client_id.present? && SiteSetting.marketo_client_secret.present?
